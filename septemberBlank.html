@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>September</title>
+    <title>January</title>
     <style>
         body {
             margin: 0;
@@ -25,15 +25,251 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensures space between header, buttons, and bottom button */
-            align-items: center;
+            align-items: center; /* Center align items horizontally */
             overflow: hidden; /* Prevents content from spilling out */
+            position: relative; /* Allows absolute positioning of the plus button */
+        }
+
+        /* Header styling */
+        .header {
+            display: flex; /* Flexbox for header alignment */
+            align-items: center; /* Center align items vertically */
+            width: 100%; /* Take full width */
+            margin-bottom: 20px; /* Space below header */
+        }
+
+        /* Back button styling */
+        .back-button {
+            padding: 10px 15px; /* Padding for the button */
+            background-color: #d3d3d3; /* Light grey background */
+            border: none;
+            border-radius: 20px; /* Rounded corners */
+            color: black;
+            font-size: 30px; /* Font size */
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from link */
+            margin-right: 10px; /* Space to the right of the button */
+            transition: background-color 0.2s; /* Transition for hover effect */
+            transition: transform 0.2s;
+        }
+
+        /* Back button hover effect */
+        .back-button:hover {
+            background-color: #c0c0c0; /* Darker grey on hover */
+        }
+        .back-button:active {
+            transform: translateY(4px); /* Makes the button look pressed */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Plus button styling */
+        .plus-button {
+            position: absolute; /* Position relative to the mobile container */
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            width: 60px; /* Width of the button */
+            height: 60px; /* Height of the button */
+            background-color: blue; /* Blue background */
+            border: none;
+            border-radius: 50%; /* Make it round */
+            color: white; /* White text color */
+            font-size: 30px; /* Font size for the plus sign */
+            display: flex;
+            justify-content: center; /* Center content */
+            align-items: center; /* Center content */
+            cursor: pointer;
+            transition: background-color 0.2s; /* Transition for hover effect */
+            transition: transform 0.2s;
+        }
+
+        /* Plus button hover effect */
+        .plus-button:hover {
+            background-color: darkblue; /* Darker blue on hover */
+        }
+        .plus-button:active {
+            transform: translateY(4px); /* Makes the button look pressed */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Delete button styling */
+        .delete-button {
+            position: absolute; /* Position relative to the mobile container */
+            bottom: 20px; /* Distance from the bottom */
+            left: 20px; /* Distance from the left */
+            width: 100px; /* Adjusted width to fit text */
+            height: 60px; /* Height of the button */
+            background-color: red; /* Red background */
+            border: none;
+            border-radius: 40px; /* Make it round */
+            color: white; /* White text color */
+            font-size: 16px; /* Font size for the delete sign */
+            display: flex;
+            justify-content: center; /* Center content */
+            align-items: center; /* Center content */
+            cursor: pointer;
+            transition: background-color 0.2s; /* Transition for hover effect */
+            transition: transform 0.2s;
+        }
+
+        /* Delete button hover effect */
+        .delete-button:hover {
+            background-color: darkred; /* Darker red on hover */
+        }
+        .delete-button:active {
+            transform: translateY(4px); /* Makes the button look pressed */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form styling */
+        .form-popup {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed positioning */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust to center */
+            background-color: white; /* White background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            padding: 20px; /* Padding */
+            z-index: 10; /* Ensure it is above other elements */
+        }
+
+        /* Form input styling */
+        .form-input {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for the input */
+            border: 1px solid #ccc; /* Border */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 10px; /* Space below input */
+        }
+
+        /* Add button styling */
+        .add-button {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding */
+            background-color: blue; /* Blue background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.2s; /* Transition for hover effect */
+        }
+
+        /* Add button hover effect */
+        .add-button:hover {
+            background-color: darkblue; /* Darker blue on hover */
+        }
+
+        /* Button container styling */
+        #button-container {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: flex-start; /* Align buttons to the left */
+            width: 100%; /* Full width */
+            margin-top: 20px; /* Space at the top */
+        }
+
+        /* Added button styling */
+        .added-button {
+            margin: 5px; /* Margin for buttons */
+            padding: 10px; /* Padding for buttons */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 16px; /* Font size */
+            display: flex; /* Flexbox for checkbox alignment */
+            align-items: center; /* Center align checkbox and text */
+        }
+
+        /* Checkbox styling */
+        .added-button input[type="checkbox"] {
+            margin-right: 10px; /* Space between checkbox and text */
         }
     </style>
 </head>
 <body>
     <div class="mobile-container">
-        
+        <!-- Header with back button and title -->
+        <div class="header">
+            <a href="index.html" class="back-button">&larr;</a>
+            <h1 style="margin:auto;">January</h1>
+        </div>
+
+        <!-- Buttons container -->
+        <div id="button-container">
+            <!-- Dynamically added buttons will appear here -->
+        </div>
+
+        <!-- Plus button -->
+        <button class="plus-button" onclick="toggleForm()">+</button>
+
+        <!-- Delete button -->
+        <button class="delete-button" onclick="deleteChecked()">Delete</button>
+
+        <!-- Form for adding text -->
+        <div class="form-popup" id="form-popup">
+            <input type="text" id="text-input" class="form-input" placeholder="Enter 2-3 words" maxlength="30">
+            <button class="add-button" onclick="addButton()">Add</button>
+            <button class="add-button" onclick="toggleForm()">Cancel</button>
+        </div>
     </div>
+
+    <script>
+        // Initialize sentences array and load from localStorage
+        let sentences = JSON.parse(localStorage.getItem('sentences')) || [];
+
+        // Load buttons from localStorage on page load
+        window.onload = () => {
+            sentences.forEach(sentence => {
+                addButtonElement(sentence);
+            });
+        };
+
+        // Toggle the form popup
+        function toggleForm() {
+            const formPopup = document.getElementById('form-popup');
+            formPopup.style.display = (formPopup.style.display === 'none' || formPopup.style.display === '') ? 'block' : 'none';
+        }
+
+        // Add button element for a new sentence
+        function addButtonElement(sentence) {
+            const buttonContainer = document.getElementById('button-container');
+            const button = document.createElement('button');
+            button.className = 'added-button';
+            button.innerHTML = `<input type="checkbox"> ${sentence}`;
+            buttonContainer.appendChild(button);
+        }
+
+        // Add a sentence to the sentences array and update localStorage
+        function addButton() {
+            const textInput = document.getElementById('text-input');
+            const newSentence = textInput.value.trim();
+
+            if (newSentence) {
+                sentences.push(newSentence); // Add new sentence to array
+                localStorage.setItem('sentences', JSON.stringify(sentences)); // Update localStorage
+                addButtonElement(newSentence); // Add button element
+                textInput.value = ''; // Clear input
+                toggleForm(); // Close form
+            } else {
+                alert("Please enter a valid sentence.");
+            }
+        }
+
+        // Delete checked sentences
+        function deleteChecked() {
+            const checkedButtons = document.querySelectorAll('#button-container input[type="checkbox"]:checked');
+            checkedButtons.forEach(checkbox => {
+                const button = checkbox.parentElement; // Get parent button
+                const index = Array.from(button.parentElement.children).indexOf(button); // Get index
+                if (index !== -1) {
+                    sentences.splice(index, 1); // Remove from array
+                    button.remove(); // Remove button element
+                }
+            });
+            localStorage.setItem('sentences', JSON.stringify(sentences)); // Update localStorage
+        }
+    </script>
 </body>
 </html>
