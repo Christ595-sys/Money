@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile View</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        /* Mobile container styling */
+        .mobile-container {
+            width: 375px; /* Example width of a mobile screen */
+            height: 667px; /* Example height of a mobile screen */
+            background-color: white;
+            border-radius: 30px; /* Rounded edges like a phone */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensures space between header, buttons, and bottom button */
+            align-items: center;
+            overflow: hidden; /* Prevents content from spilling out */
+        }
+
+        /* Header styling */
+        .header {
+            width: 100%;
+            background-color: grey;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px 0;
+            border-radius: 10px; /* Slightly rounded edges for the header */
+            margin-bottom: 10px;
+        }
+
+        /* Grid container for the month buttons */
+        .months-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            gap: 10px; /* Spacing between the buttons */
+            flex-grow: 1; /* Allows the grid to grow and take up available space */
+        }
+
+        /* Month buttons styling */
+        .month-button {
+    padding: 10px; /* Smaller padding for smaller buttons */
+    background-color: #d3d3d3; /* Light grey background */
+    border: none;
+    border-radius: 125px; /* Curvy edges */
+    color: black;
+    font-size: 18px; /* Smaller font size */
+    font-weight: bold;
+    text-align: center; /* Align text to the left */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 3D shadow effect */
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+        /* Add 3D press effect */
+        .month-button:active {
+            transform: translateY(4px); /* Makes the button look pressed */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 3D button styling (for 'Press Me') */
+        .button {
+            width: 100%; /* Full width of the mobile container */
+            padding: 20px;
+            background-color: green; /* Green color for the button */
+            border: none;
+            border-radius: 30px; /* Curvy edges */
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* 3D shadow effect */
+            margin-top: 20px; /* Space above the button */
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        /* Add 3D press effect for 'Press Me' button */
+        .button:active {
+            transform: translateY(4px); /* Makes the button look pressed */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        a{
+            text-decoration:none;
+           
+            
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .mobile-container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .month-button {
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header with 'Money' text -->
+        <div class="header">Money</div>
+        
+        <!-- Grid with two columns for months -->
+        <div class="months-grid">
+    <button class="month-button" onclick="window.location.href='januaryBlank.html'">January</button>
+    <button class="month-button" onclick="window.location.href='februaryBlank.html'">February</button>
+    <button class="month-button" onclick="window.location.href='marchBlank.html'">March</button>
+    <button class="month-button" onclick="window.location.href='aprilBlank.html'">April</button>
+    <button class="month-button" onclick="window.location.href='mayBlank.html'">May</button>
+    <button class="month-button" onclick="window.location.href='juneBlank.html'">June</button>
+    <button class="month-button" onclick="window.location.href='julyBlank.html'">July</button>
+    <button class="month-button" onclick="window.location.href='augustBlank.html'">August</button>
+    <button class="month-button" onclick="window.location.href='septemberBlank.html'">September</button>
+    <button class="month-button" onclick="window.location.href='octoberBlank.html'">October</button>
+    <button class="month-button" onclick="window.location.href='novemberBlank.html'">November</button>
+    <button class="month-button" onclick="window.location.href='decemberBlank.html'">December</button>
+</div>
+
+
+
+        <!-- Spacer to create a gap between the last month button and the 'Press Me' button -->
+        <div style="height: 20px;"></div>
+
+        <!-- Green 'Press Me' button at the bottom -->
+        <button class="button">Total: 250$</button>
+    </div>
+</body>
+</html>
