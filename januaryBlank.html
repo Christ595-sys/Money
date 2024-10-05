@@ -13,226 +13,219 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            transform: scale(0.85);
+            transform-origin: center;
         }
 
-        /* Mobile container styling */
         .mobile-container {
-            width: 375px; /* Example width of a mobile screen */
-            height: 667px; /* Example height of a mobile screen */
+            width: 375px;
+            height: 667px;
             background-color: white;
-            border-radius: 30px; /* Rounded edges like a phone */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            border-radius: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             padding: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center align items horizontally */
-            overflow: hidden; /* Prevents content from spilling out */
-            position: relative; /* Allows absolute positioning of the plus button */
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Header styling */
         .header {
-            display: flex; /* Flexbox for header alignment */
-            align-items: center; /* Center align items vertically */
-            width: 100%; /* Take full width */
-            margin-bottom: 20px; /* Space below header */
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
-        /* Back button styling */
         .back-button {
-            padding: 10px 15px; /* Padding for the button */
-            background-color: #d3d3d3; /* Light grey background */
+            padding: 10px 15px;
+            background-color: #d3d3d3;
             border: none;
-            border-radius: 20px; /* Rounded corners */
+            border-radius: 20px;
             color: black;
-            font-size: 30px; /* Font size */
+            font-size: 30px;
             font-weight: bold;
             cursor: pointer;
-            text-decoration: none; /* Remove underline from link */
-            margin-right: 10px; /* Space to the right of the button */
-            transition: background-color 0.2s; /* Transition for hover effect */
-            transition: transform 0.2s;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.2s, transform 0.2s;
         }
 
-        /* Back button hover effect */
         .back-button:hover {
-            background-color: #c0c0c0; /* Darker grey on hover */
+            background-color: #c0c0c0;
         }
+
         .back-button:active {
-            transform: translateY(4px); /* Makes the button look pressed */
+            transform: translateY(4px);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Plus button styling */
         .plus-button {
-            position: absolute; /* Position relative to the mobile container */
-            bottom: 20px; /* Distance from the bottom */
-            right: 20px; /* Distance from the right */
-            width: 60px; /* Width of the button */
-            height: 60px; /* Height of the button */
-            background-color: blue; /* Blue background */
+            position: absolute;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: blue;
             border: none;
-            border-radius: 50%; /* Make it round */
-            color: white; /* White text color */
-            font-size: 30px; /* Font size for the plus sign */
+            border-radius: 50%;
+            color: white;
+            font-size: 30px;
             display: flex;
-            justify-content: center; /* Center content */
-            align-items: center; /* Center content */
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            transition: background-color 0.2s; /* Transition for hover effect */
-            transition: transform 0.2s;
+            transition: background-color 0.2s, transform 0.2s;
         }
 
-        /* Plus button hover effect */
         .plus-button:hover {
-            background-color: darkblue; /* Darker blue on hover */
+            background-color: darkblue;
         }
+
         .plus-button:active {
-            transform: translateY(4px); /* Makes the button look pressed */
+            transform: translateY(4px);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Delete button styling */
         .delete-button {
-            position: absolute; /* Position relative to the mobile container */
-            bottom: 20px; /* Distance from the bottom */
-            left: 20px; /* Distance from the left */
-            width: 100px; /* Adjusted width to fit text */
-            height: 60px; /* Height of the button */
-            background-color: red; /* Red background */
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 100px;
+            height: 60px;
+            background-color: red;
             border: none;
-            border-radius: 40px; /* Make it round */
-            color: white; /* White text color */
-            font-size: 16px; /* Font size for the delete sign */
+            border-radius: 40px;
+            color: white;
+            font-size: 16px;
             display: flex;
-            justify-content: center; /* Center content */
-            align-items: center; /* Center content */
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            transition: background-color 0.2s; /* Transition for hover effect */
-            transition: transform 0.2s;
+            transition: background-color 0.2s, transform 0.2s;
         }
 
-        /* Delete button hover effect */
         .delete-button:hover {
-            background-color: darkred; /* Darker red on hover */
+            background-color: darkred;
         }
+
         .delete-button:active {
-            transform: translateY(4px); /* Makes the button look pressed */
+            transform: translateY(4px);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Form styling */
         .form-popup {
-            display: none; /* Hidden by default */
-            position: fixed; /* Fixed positioning */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust to center */
-            background-color: white; /* White background */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-            padding: 20px; /* Padding */
-            z-index: 10; /* Ensure it is above other elements */
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            z-index: 10;
         }
 
-        /* Form input styling */
         .form-input {
-            width: 100%; /* Full width */
-            padding: 10px; /* Padding for the input */
-            border: 1px solid #ccc; /* Border */
-            border-radius: 5px; /* Rounded corners */
-            margin-bottom: 10px; /* Space below input */
+            width: 93%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        /* Add button styling */
         .add-button {
-            width: 100%; /* Full width */
-            padding: 10px; /* Padding */
-            background-color: blue; /* Blue background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor */
-            transition: background-color 0.2s; /* Transition for hover effect */
+            width: 50%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-left: 80px;
         }
 
-        /* Add button hover effect */
         .add-button:hover {
-            background-color: darkblue; /* Darker blue on hover */
+            background-color: darkblue;
         }
 
-        /* Button container styling */
         #button-container {
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            align-items: flex-start; /* Align buttons to the left */
-            width: 100%; /* Full width */
-            margin-top: 20px; /* Space at the top */
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin-top: 20px;
+            height: 400px;
+            overflow-y: auto;
         }
 
-        /* Added button styling */
         .added-button {
-            margin: 5px; /* Margin for buttons */
-            padding: 10px; /* Padding for buttons */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor */
-            font-size: 16px; /* Font size */
-            display: flex; /* Flexbox for checkbox alignment */
-            align-items: center; /* Center align checkbox and text */
+            margin: 2px 0;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
         }
 
-        /* Checkbox styling */
         .added-button input[type="checkbox"] {
-            margin-right: 10px; /* Space between checkbox and text */
+            margin-right: 10px;
+        }
+
+        /* Total sum display */
+        #total-sum {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="mobile-container">
-        <!-- Header with back button and title -->
         <div class="header">
             <a href="index.html" class="back-button">&larr;</a>
             <h1 style="margin:auto;">January</h1>
         </div>
 
-        <!-- Buttons container -->
-        <div id="button-container">
-            <!-- Dynamically added buttons will appear here -->
-        </div>
+        <div id="button-container"></div>
 
-        <!-- Plus button -->
         <button class="plus-button" onclick="toggleForm()">+</button>
-
-        <!-- Delete button -->
         <button class="delete-button" onclick="deleteChecked()">Delete</button>
+        <button class="add-button" onclick="sumDollarSentences()">Sum Dollar Sentences</button>
 
-        <!-- Form for adding text -->
         <div class="form-popup" id="form-popup">
-            <input type="text" id="text-input" class="form-input" placeholder="Enter 2-3 words" maxlength="30">
+            <input type="text" id="text-input" class="form-input" placeholder="Enter here..." maxlength="30" oninput="updateLiveSum()">
             <button class="add-button" onclick="addButton()">Add</button>
+            <br><br>
             <button class="add-button" onclick="toggleForm()">Cancel</button>
         </div>
+
+        <div id="total-sum">Total: $0</div>
     </div>
 
     <script>
-        // Initialize sentences array and load from localStorage
         let sentences = JSON.parse(localStorage.getItem('sentences')) || [];
 
-        // Load buttons from localStorage on page load
+        // Load existing sentences and calculate total on page load
         window.onload = () => {
             sentences.forEach(sentence => {
                 addButtonElement(sentence);
             });
+            updateTotalSum();
         };
 
         // Toggle the form popup
         function toggleForm() {
             const formPopup = document.getElementById('form-popup');
-            formPopup.style.display = (formPopup.style.display === 'none' || formPopup.style.display === '') ? 'block' : 'none';
+            formPopup.style.display = formPopup.style.display === 'none' || formPopup.style.display === '' ? 'block' : 'none';
         }
 
-        // Add button element for a new sentence
+        // Add button element for the new sentence
         function addButtonElement(sentence) {
             const buttonContainer = document.getElementById('button-container');
             const button = document.createElement('button');
@@ -247,9 +240,10 @@
             const newSentence = textInput.value.trim();
 
             if (newSentence) {
-                sentences.push(newSentence); // Add new sentence to array
-                localStorage.setItem('sentences', JSON.stringify(sentences)); // Update localStorage
-                addButtonElement(newSentence); // Add button element
+                sentences.push(newSentence);
+                localStorage.setItem('sentences', JSON.stringify(sentences));
+                addButtonElement(newSentence);
+                updateTotalSum(); // Update total sum after adding new sentence
                 textInput.value = ''; // Clear input
                 toggleForm(); // Close form
             } else {
@@ -257,18 +251,52 @@
             }
         }
 
-        // Delete checked sentences
+        // Delete checked sentences and update the total sum
         function deleteChecked() {
             const checkedButtons = document.querySelectorAll('#button-container input[type="checkbox"]:checked');
             checkedButtons.forEach(checkbox => {
-                const button = checkbox.parentElement; // Get parent button
-                const index = Array.from(button.parentElement.children).indexOf(button); // Get index
+                const button = checkbox.parentElement;
+                const index = Array.from(button.parentElement.children).indexOf(button);
                 if (index !== -1) {
-                    sentences.splice(index, 1); // Remove from array
-                    button.remove(); // Remove button element
+                    sentences.splice(index, 1);
+                    button.remove();
                 }
             });
-            localStorage.setItem('sentences', JSON.stringify(sentences)); // Update localStorage
+            localStorage.setItem('sentences', JSON.stringify(sentences));
+            updateTotalSum(); // Update total sum after deleting sentences
+        }
+
+        // Update total sum based on the sentences in localStorage
+        function updateTotalSum() {
+            const total = sentences.reduce((sum, sentence) => {
+                const match = sentence.match(/\$([\d,.]+)/); // Improved regex to match numbers with commas
+                return match ? sum + parseFloat(match[1].replace(/,/g, '')) : sum; // Remove commas for parsing
+            }, 0);
+            document.getElementById('total-sum').innerText = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Sum and display only sentences with dollar amounts
+        function sumDollarSentences() {
+            const dollarSentences = sentences.filter(sentence => /\$[\d,.]+/.test(sentence));
+            const totalDollarSum = dollarSentences.reduce((sum, sentence) => {
+                const match = sentence.match(/\$([\d,.]+)/); // Improved regex to match numbers with commas
+                return match ? sum + parseFloat(match[1].replace(/,/g, '')) : sum; // Remove commas for parsing
+            }, 0);
+            alert(`Total Dollar Sentences: $${totalDollarSum.toFixed(2)}`);
+        }
+
+        // Update live sum while typing in the input field
+        function updateLiveSum() {
+            const textInput = document.getElementById('text-input').value;
+            const match = textInput.match(/\$([\d,.]+)/); // Improved regex to match numbers with commas
+            const liveSumValue = match ? parseFloat(match[1].replace(/,/g, '')) : 0;
+
+            const existingTotal = sentences.reduce((total, sentence) => {
+                const match = sentence.match(/\$([\d,.]+)/); // Improved regex to match numbers with commas
+                return match ? total + parseFloat(match[1].replace(/,/g, '')) : total; // Remove commas for parsing
+            }, 0);
+
+            document.getElementById('total-sum').innerText = `Total: $${(existingTotal + liveSumValue).toFixed(2)}`;
         }
     </script>
 </body>
