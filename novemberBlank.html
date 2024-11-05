@@ -13,27 +13,283 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            transform: scale(0.85);
+            transform-origin: center;
         }
 
-        /* Mobile container styling */
         .mobile-container {
-            width: 375px; /* Example width of a mobile screen */
-            height: 667px; /* Example height of a mobile screen */
+            width: 375px;
+            height: 667px;
             background-color: white;
-            border-radius: 30px; /* Rounded edges like a phone */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            border-radius: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensures space between header, buttons, and bottom button */
             align-items: center;
-            overflow: hidden; /* Prevents content from spilling out */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            padding: 10px 15px;
+            background-color: #d3d3d3;
+            border: none;
+            border-radius: 20px;
+            color: black;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #c0c0c0;
+        }
+
+        .back-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .plus-button {
+            position: absolute;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: blue;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .plus-button:hover {
+            background-color: darkblue;
+        }
+
+        .plus-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .delete-button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 100px;
+            height: 60px;
+            background-color: red;
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .delete-button:hover {
+            background-color: darkred;
+        }
+
+        .delete-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            z-index: 10;
+        }
+
+        .form-input {
+            width: 93%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .add-button {
+            width: 50%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-left: 80px;
+        }
+
+        .add-button:hover {
+            background-color: darkblue;
+        }
+
+        #button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin-top: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .added-button {
+            margin: 2px 0;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .added-button input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        #total-sum {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="mobile-container">
-        
+        <div class="header">
+            <a href="index.html" class="back-button">&larr;</a>
+            <h1 style="margin:auto;">November</h1>
+        </div>
+
+        <div id="button-container"></div>
+
+        <button class="plus-button" onclick="toggleForm()">+</button>
+        <button class="delete-button" onclick="deleteChecked()">Delete</button>
+        <button class="add-button" onclick="sumDollarSentences()">Sum Dollar Sentences</button>
+
+        <div class="form-popup" id="form-popup">
+            <input type="text" id="text-input" class="form-input" placeholder="Enter here..." maxlength="30" oninput="updateLiveSum()">
+            <button class="add-button" onclick="addButton()">Add</button>
+            <br><br>
+            <button class="add-button" onclick="toggleForm()">Cancel</button>
+        </div>
+
+        <div id="total-sum">Total: $0</div>
     </div>
+
+    <script>
+        const monthKey = 'sentences_november'; // Updated key for November
+        let sentences = JSON.parse(localStorage.getItem(monthKey)) || [];
+
+        window.onload = () => {
+            sentences.forEach(sentence => {
+                addButtonElement(sentence);
+            });
+            updateTotalSum();
+        };
+
+        function toggleForm() {
+            const formPopup = document.getElementById('form-popup');
+            formPopup.style.display = formPopup.style.display === 'none' || formPopup.style.display === '' ? 'block' : 'none';
+        }
+
+        function addButtonElement(sentence) {
+            const buttonContainer = document.getElementById('button-container');
+            const button = document.createElement('button');
+            button.className = 'added-button';
+            button.innerHTML = `<input type="checkbox"> ${sentence}`;
+            buttonContainer.appendChild(button);
+        }
+
+        function addButton() {
+            const textInput = document.getElementById('text-input');
+            const newSentence = textInput.value.trim();
+
+            if (newSentence) {
+                sentences.push(newSentence);
+                localStorage.setItem(monthKey, JSON.stringify(sentences));
+                addButtonElement(newSentence);
+                updateTotalSum();
+                textInput.value = '';
+                toggleForm();
+            } else {
+                alert("Please enter a valid sentence.");
+            }
+        }
+
+        function deleteChecked() {
+            const checkedButtons = document.querySelectorAll('#button-container input[type="checkbox"]:checked');
+            checkedButtons.forEach(checkbox => {
+                const button = checkbox.parentElement;
+                const index = Array.from(button.parentElement.children).indexOf(button);
+                if (index !== -1) {
+                    sentences.splice(index, 1);
+                    button.remove();
+                }
+            });
+            localStorage.setItem(monthKey, JSON.stringify(sentences));
+            updateTotalSum();
+        }
+
+        function updateTotalSum() {
+            const total = sentences.reduce((sum, sentence) => {
+                const match = sentence.match(/\$([\d,.]+)/);
+                return match ? sum + parseFloat(match[1].replace(/,/g, '')) : sum;
+            }, 0);
+            document.getElementById('total-sum').innerText = `Total: $${total.toFixed(2)}`;
+        }
+
+        function sumDollarSentences() {
+            const dollarSentences = sentences.filter(sentence => /\$[\d,.]+/.test(sentence));
+            const totalDollarSum = dollarSentences.reduce((sum, sentence) => {
+                const match = sentence.match(/\$([\d,.]+)/);
+                return match ? sum + parseFloat(match[1].replace(/,/g, '')) : sum;
+            }, 0);
+            alert(`Total Dollar Sentences: $${totalDollarSum.toFixed(2)}`);
+        }
+
+        function updateLiveSum() {
+            const textInput = document.getElementById('text-input').value;
+            const match = textInput.match(/\$([\d,.]+)/);
+            const liveSumValue = match ? parseFloat(match[1].replace(/,/g, '')) : 0;
+
+            const existingTotal = sentences.reduce((total, sentence) => {
+                const match = sentence.match(/\$([\d,.]+)/);
+                return match ? total + parseFloat(match[1].replace(/,/g, '')) : total;
+            }, 0);
+
+            document.getElementById('total-sum').innerText = `Total: $${(existingTotal + liveSumValue).toFixed(2)}`;
+        }
+    </script>
 </body>
 </html>
